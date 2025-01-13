@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
 
+
+
         Scanner input = new Scanner(System.in);
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -18,6 +20,8 @@ public class Program {
         LocalDate checkIn = LocalDate.parse(input.next(), fmt);
         System.out.print("Check-out date (dd/MM/yyyy): ");
         LocalDate checkOut = LocalDate.parse(input.next(), fmt);
+
+        //Very bad solution
 
         if(!checkOut.isAfter(checkIn)){
             System.out.println("Error in reservation: Check-out date must be after check-in date");
