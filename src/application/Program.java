@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
 
-
-
         Scanner input = new Scanner(System.in);
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -30,25 +28,20 @@ public class Program {
             System.out.println("Reservation: " + reservation);
 
             System.out.println();
-            System.out.print("Enter data to update the reservation: ");
+            System.out.println("Enter data to update the reservation: ");
             System.out.print("Check-in date (dd/MM/yyyy): ");
             checkIn = LocalDate.parse(input.next(), fmt);
             System.out.print("Check-out date (dd/MM/yyyy): ");
             checkOut = LocalDate.parse(input.next(), fmt);
 
-            LocalDate now = LocalDate.now();
-            if(checkIn.isBefore(now) || checkOut.isBefore(now)){
-                System.out.println("Error in reservation: " +
-                        "Reservation dates for update must be future dates");
-            }
-            else if(!checkOut.isAfter(checkIn)){
-                System.out.println("Error in reservation: Check-out date must be after check-in date");
-            }
-            else{
-                reservation.updateDates(checkIn, checkOut);
+            String error = reservation.updateDates(checkIn, checkOut);
+            if(error != null){
+                System.out.println("Error in reservation: " + error);
+            }else{
                 System.out.println("Reservation: " + reservation);
             }
         }
+
         input.close();
     }
 }
